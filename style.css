@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* --- GLOBAL AESTHETICS --- */
+body {
+    background-color: #050505; /* True Black/Obsidian */
+    color: #e2e8f0;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Noise Texture Overlay for "Film Grain" look */
+.bg-noise {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 50;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Premium Glass Effect */
+.glass-panel {
+    background: rgba(20, 20, 25, 0.6); /* Darker, more neutral */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 
+        0 4px 30px rgba(0, 0, 0, 0.4),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05); /* Inner rim light */
+}
+
+/* High-Gloss Card */
+.glass-card {
+    background: linear-gradient(145deg, rgba(30, 30, 35, 0.7) 0%, rgba(10, 10, 12, 0.8) 100%);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.glass-card:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+/* Inputs with "Glow" focus */
+input, textarea, select {
+    transition: all 0.2s ease;
+}
+input:focus, textarea:focus {
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.15), 0 0 15px rgba(59, 130, 246, 0.1);
+}
+
+/* Custom Scrollbar - Slim & Sleek */
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+::-webkit-scrollbar-track {
+    background: transparent; 
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15); 
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3); 
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; filter: blur(5px); }
+    to { opacity: 1; filter: blur(0); }
+}
+@keyframes slideUp {
+    from { transform: translateY(15px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-fade-in { animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+.animate-slide-up { animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+
+/* Markdown Styles */
+strong { color: #fff; font-weight: 600; }
+
+/* Utility */
+.text-glow { text-shadow: 0 0 20px rgba(255,255,255,0.2); }

@@ -1,0 +1,10 @@
+Flask
+flask-cors
+requests
+pymupdf
+firebase-admin
+supabase
+python-dotenv
+langchain  <-- Uncomment these if you re-enabled RAG
+# faiss-cpu
+# sentence-transformers

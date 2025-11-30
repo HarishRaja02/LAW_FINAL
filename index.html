@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal AIOS Pro | Enterprise</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        gold: {
+                            400: '#D4AF37',
+                            500: '#C5A028',
+                            900: '#4A3B0F',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-[#050505] text-slate-300 font-sans overflow-hidden selection:bg-blue-500/30 selection:text-white">
+
+    <div class="bg-noise"></div>
+
+    <div class="fixed inset-0 pointer-events-none z-0">
+        <div class="absolute -top-[30%] -left-[10%] w-[70%] h-[70%] bg-blue-900/10 rounded-full blur-[150px] mix-blend-screen opacity-60"></div>
+        <div class="absolute top-[10%] -right-[20%] w-[60%] h-[60%] bg-indigo-950/20 rounded-full blur-[150px] mix-blend-screen opacity-50"></div>
+        <div class="absolute bottom-[-20%] left-[30%] w-[50%] h-[50%] bg-slate-900/40 rounded-full blur-[120px] mix-blend-screen"></div>
+    </div>
+
+    <div class="flex w-full h-full h-screen z-10 relative">
+        
+        <div class="w-[270px] h-full flex flex-col shrink-0 z-20 border-r border-white/5 bg-[#08080a]/80 backdrop-blur-xl">
+            <div class="p-8 pb-10">
+                <div class="flex items-center space-x-3 group cursor-pointer">
+                    <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(37,99,235,0.3)] group-hover:shadow-[0_0_30px_rgba(37,99,235,0.5)] transition-all duration-300">
+                        <i data-lucide="scale" class="text-white w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h1 class="font-serif text-xl font-medium text-white tracking-tight leading-none">Legal AIOS</h1>
+                        <span class="text-[9px] font-bold text-blue-400 uppercase tracking-[0.2em] mt-1 block opacity-80">Pro Suite</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex-1 px-4 space-y-8 overflow-y-auto py-2 custom-scrollbar">
+                <div>
+                    <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest px-3 mb-4">Core</div>
+                    <nav class="space-y-1">
+                        <button onclick="switchTab('dashboard')" id="nav-dashboard" class="nav-btn w-full flex items-center justify-between px-3 py-3 rounded-lg transition-all duration-300 group relative overflow-hidden bg-white/5 text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)] border border-white/5">
+                            <div class="flex items-center space-x-3 relative z-10">
+                                <i data-lucide="layout-grid" class="w-[18px] text-blue-400"></i>
+                                <span class="font-medium text-sm">Dashboard</span>
+                            </div>
+                            <div class="active-indicator absolute left-0 top-0 w-[3px] h-full bg-blue-500 shadow-[0_0_15px_#3b82f6]"></div>
+                        </button>
+
+                        <button onclick="switchTab('document_locker')" id="nav-document_locker" class="nav-btn w-full flex items-center justify-between px-3 py-3 rounded-lg transition-all duration-200 group text-slate-400 hover:text-white hover:bg-white/5">
+                            <div class="flex items-center space-x-3">
+                                <i data-lucide="shield-check" class="w-[18px] text-slate-500 group-hover:text-slate-300 transition-colors"></i>
+                                <span class="font-medium text-sm">Vault & Security</span>
+                            </div>
+                        </button>
+
+                        <button onclick="switchTab('case_reminder')" id="nav-case_reminder" class="nav-btn w-full flex items-center justify-between px-3 py-3 rounded-lg transition-all duration-200 group text-slate-400 hover:text-white hover:bg-white/5">
+                            <div class="flex items-center space-x-3">
+                                <i data-lucide="calendar-clock" class="w-[18px] text-slate-500 group-hover:text-slate-300 transition-colors"></i>
+                                <span class="font-medium text-sm">Docket & Reminders</span>
+                            </div>
+                        </button>
+                    </nav>
+                </div>
+
+                <div>
+                    <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest px-3 mb-4">Intelligence Engines</div>
+                    <nav class="space-y-1">
+                        <button onclick="switchTab('law_advisor')" id="nav-law_advisor" class="nav-btn w-full flex items-center justify-between px-3 py-3 rounded-lg transition-all duration-200 group text-slate-400 hover:text-white hover:bg-white/5">
+                            <div class="flex items-center space-x-3">
+                                <i data-lucide="sparkles" class="w-[18px] text-amber-500/80 group-hover:text-amber-400 transition-colors"></i>
+                                <span class="font-medium text-sm">AI Legal Advisor</span>
+                            </div>
+                        </button>
+
+                        <button onclick="switchTab('fee_finder')" id="nav-fee_finder" class="nav-btn w-full flex items-center justify-between px-3 py-3 rounded-lg transition-all duration-200 group text-slate-400 hover:text-white hover:bg-white/5">
+                            <div class="flex items-center space-x-3">
+                                <i data-lucide="calculator" class="w-[18px] text-slate-500 group-hover:text-slate-300 transition-colors"></i>
+                                <span class="font-medium text-sm">Cost Estimator</span>
+                            </div>
+                        </button>
+
+                        <button onclick="switchTab('case_predictor')" id="nav-case_predictor" class="nav-btn w-full flex items-center justify-between px-3 py-3 rounded-lg transition-all duration-200 group text-slate-400 hover:text-white hover:bg-white/5">
+                            <div class="flex items-center space-x-3">
+                                <i data-lucide="trending-up" class="w-[18px] text-slate-500 group-hover:text-slate-300 transition-colors"></i>
+                                <span class="font-medium text-sm">Outcome Predictor</span>
+                            </div>
+                        </button>
+
+                        <button onclick="switchTab('pdf_summarizer')" id="nav-pdf_summarizer" class="nav-btn w-full flex items-center justify-between px-3 py-3 rounded-lg transition-all duration-200 group text-slate-400 hover:text-white hover:bg-white/5">
+                            <div class="flex items-center space-x-3">
+                                <i data-lucide="file-search" class="w-[18px] text-slate-500 group-hover:text-slate-300 transition-colors"></i>
+                                <span class="font-medium text-sm">Doc Intelligence</span>
+                            </div>
+                        </button>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="p-4 border-t border-white/5 bg-black/20">
+                <button class="w-full flex items-center justify-between p-3 rounded-xl hover:bg-white/5 transition-colors group border border-transparent hover:border-white/5">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-slate-700 to-slate-600 border border-white/10 flex items-center justify-center shadow-lg">
+                            <span class="text-xs font-bold text-white font-serif">JS</span>
+                        </div>
+                        <div class="text-left">
+                            <p class="text-xs font-semibold text-white group-hover:text-blue-200 transition-colors">John Smith</p>
+                            <p class="text-[10px] text-slate-500 uppercase tracking-wider">Managing Partner</p>
+                        </div>
+                    </div>
+                    <i data-lucide="settings-2" class="w-4 h-4 text-slate-600 group-hover:text-slate-400"></i>
+                </button>
+            </div>
+        </div>
+
+        <main class="flex-1 flex flex-col h-full overflow-hidden relative">
+            
+            <header class="h-20 flex items-center justify-between px-10 border-b border-white/5 z-20">
+                <div class="flex items-center space-x-3">
+                    <span class="text-slate-600 text-xs font-semibold uppercase tracking-widest">Workspace</span>
+                    <i data-lucide="chevron-right" class="w-3 h-3 text-slate-700"></i>
+                    <span id="header-title" class="text-white text-sm font-medium capitalize font-serif tracking-wide">Overview</span>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <button class="text-slate-500 hover:text-white transition-colors relative">
+                        <i data-lucide="bell" class="w-5 h-5"></i>
+                        <span class="absolute top-0 right-0 w-2 h-2 bg-blue-500 rounded-full border-2 border-[#050505]"></span>
+                    </button>
+                    <div class="h-4 w-[1px] bg-white/10"></div>
+                    <div class="flex items-center space-x-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+                        <div class="h-1.5 w-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
+                        <span class="text-[10px] font-bold text-emerald-500 uppercase tracking-wider">System Online</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="flex-1 overflow-y-auto overflow-x-hidden p-10 scroll-smooth" id="main-container">
+                
+                <div id="tab-dashboard" class="tab-content max-w-[1600px] mx-auto animate-fade-in">
+                    <div class="mb-12 flex justify-between items-end">
+                        <div>
+                            <h1 class="text-4xl font-serif font-medium text-white mb-3 text-glow">
+                                Good Morning, <span class="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">Counselor</span>
+                            </h1>
+                            <p class="text-slate-400 text-sm font-light">Your daily legal intelligence briefing is ready.</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xs text-slate-500 uppercase tracking-widest mb-1">Current Session</p>
+                            <p class="text-xl font-mono text-white">09:42 <span class="text-sm text-slate-600">AM</span></p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                        <div class="glass-card p-6 rounded-2xl relative overflow-hidden group">
+                            <div class="absolute -right-6 -top-6 w-24 h-24 bg-blue-500/10 rounded-full blur-2xl group-hover:bg-blue-500/20 transition-all"></div>
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="p-2 bg-white/5 rounded-lg border border-white/5">
+                                    <i data-lucide="clock" class="w-5 h-5 text-blue-400"></i>
+                                </div>
+                                <span class="text-[10px] font-bold text-emerald-400 bg-emerald-500/10 px-2 py-1 rounded border border-emerald-500/10">+12%</span>
+                            </div>
+                            <div class="text-slate-400 text-xs font-bold uppercase tracking-widest mb-1">Billable Hours</div>
+                            <div class="text-3xl font-mono text-white tracking-tight">32.5 <span class="text-sm text-slate-600">hrs</span></div>
+                        </div>
+
+                        <div class="glass-card p-6 rounded-2xl relative overflow-hidden group">
+                            <div class="absolute -right-6 -top-6 w-24 h-24 bg-amber-500/10 rounded-full blur-2xl group-hover:bg-amber-500/20 transition-all"></div>
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="p-2 bg-white/5 rounded-lg border border-white/5">
+                                    <i data-lucide="calendar" class="w-5 h-5 text-amber-400"></i>
+                                </div>
+                                <span class="text-[10px] font-bold text-amber-400 bg-amber-500/10 px-2 py-1 rounded border border-amber-500/10">Urgent</span>
+                            </div>
+                            <div class="text-slate-400 text-xs font-bold uppercase tracking-widest mb-1">Pending Hearings</div>
+                            <div class="text-3xl font-mono text-white tracking-tight">03 <span class="text-sm text-slate-600">cases</span></div>
+                        </div>
+
+                        <div class="glass-card p-6 rounded-2xl relative overflow-hidden group">
+                            <div class="absolute -right-6 -top-6 w-24 h-24 bg-purple-500/10 rounded-full blur-2xl group-hover:bg-purple-500/20 transition-all"></div>
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="p-2 bg-white/5 rounded-lg border border-white/5">
+                                    <i data-lucide="shield-check" class="w-5 h-5 text-purple-400"></i>
+                                </div>
+                                <span class="text-[10px] font-bold text-slate-400 bg-white/5 px-2 py-1 rounded border border-white/5">Encrypted</span>
+                            </div>
+                            <div class="text-slate-400 text-xs font-bold uppercase tracking-widest mb-1">Vault Status</div>
+                            <div class="text-3xl font-mono text-white tracking-tight">Secure</div>
+                        </div>
+
+                        <div class="glass-card p-6 rounded-2xl relative overflow-hidden group">
+                            <div class="absolute -right-6 -top-6 w-24 h-24 bg-emerald-500/10 rounded-full blur-2xl group-hover:bg-emerald-500/20 transition-all"></div>
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="p-2 bg-white/5 rounded-lg border border-white/5">
+                                    <i data-lucide="zap" class="w-5 h-5 text-emerald-400"></i>
+                                </div>
+                            </div>
+                            <div class="text-slate-400 text-xs font-bold uppercase tracking-widest mb-1">AI Efficiency</div>
+                            <div class="text-3xl font-mono text-white tracking-tight">98 <span class="text-sm text-slate-600">%</span></div>
+                        </div>
+                    </div>
+
+                    <h3 class="text-xs font-bold text-slate-500 uppercase tracking-[0.2em] mb-6 pl-1 border-l-2 border-blue-500 ml-1">Quick Actions</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <button onclick="switchTab('fee_finder')" class="group glass-panel p-6 rounded-2xl text-left hover:bg-white/5 transition-all duration-300 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                            <div class="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center mb-5 border border-blue-500/20 group-hover:scale-110 transition-transform duration-300">
+                                <i data-lucide="calculator" class="text-blue-400 w-6 h-6"></i>
+                            </div>
+                            <h3 class="text-white font-serif text-lg mb-2">Fee Estimator</h3>
+                            <p class="text-xs text-slate-400 mb-6 leading-relaxed">Calculate projected legal costs for litigation scenarios with regional precision.</p>
+                            <div class="flex items-center text-blue-400 text-xs font-bold uppercase tracking-wider">
+                                Access Tool <i data-lucide="arrow-right" class="w-3.5 h-3.5 ml-2 group-hover:translate-x-1 transition-transform"></i>
+                            </div>
+                        </button>
+
+                        <button onclick="switchTab('case_predictor')" class="group glass-panel p-6 rounded-2xl text-left hover:bg-white/5 transition-all duration-300 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                            <div class="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center mb-5 border border-emerald-500/20 group-hover:scale-110 transition-transform duration-300">
+                                <i data-lucide="scale" class="text-emerald-400 w-6 h-6"></i>
+                            </div>
+                            <h3 class="text-white font-serif text-lg mb-2">Case Predictor</h3>
+                            <p class="text-xs text-slate-400 mb-6 leading-relaxed">Analyze historical precedents to determine win probability and risk factors.</p>
+                            <div class="flex items-center text-emerald-400 text-xs font-bold uppercase tracking-wider">
+                                Run Simulation <i data-lucide="arrow-right" class="w-3.5 h-3.5 ml-2 group-hover:translate-x-1 transition-transform"></i>
+                            </div>
+                        </button>
+
+                        <button onclick="switchTab('law_advisor')" class="group glass-panel p-6 rounded-2xl text-left hover:bg-white/5 transition-all duration-300 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-br from-amber-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                            <div class="w-12 h-12 bg-amber-500/10 rounded-xl flex items-center justify-center mb-5 border border-amber-500/20 group-hover:scale-110 transition-transform duration-300">
+                                <i data-lucide="book-open" class="text-amber-400 w-6 h-6"></i>
+                            </div>
+                            <h3 class="text-white font-serif text-lg mb-2">Legal Advisor</h3>
+                            <p class="text-xs text-slate-400 mb-6 leading-relaxed">Instant interpretation of IPC sections and Constitutional Articles.</p>
+                            <div class="flex items-center text-amber-400 text-xs font-bold uppercase tracking-wider">
+                                Consult AI <i data-lucide="arrow-right" class="w-3.5 h-3.5 ml-2 group-hover:translate-x-1 transition-transform"></i>
+                            </div>
+                        </button>
+
+                        <button onclick="switchTab('pdf_summarizer')" class="group glass-panel p-6 rounded-2xl text-left hover:bg-white/5 transition-all duration-300 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                            <div class="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center mb-5 border border-indigo-500/20 group-hover:scale-110 transition-transform duration-300">
+                                <i data-lucide="file-text" class="text-indigo-400 w-6 h-6"></i>
+                            </div>
+                            <h3 class="text-white font-serif text-lg mb-2">Doc Intelligence</h3>
+                            <p class="text-xs text-slate-400 mb-6 leading-relaxed">Automated summarization and clause extraction for complex briefs.</p>
+                            <div class="flex items-center text-indigo-400 text-xs font-bold uppercase tracking-wider">
+                                Upload File <i data-lucide="arrow-right" class="w-3.5 h-3.5 ml-2 group-hover:translate-x-1 transition-transform"></i>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="tab-law_advisor" class="tab-content hidden flex flex-col h-[85vh] glass-panel rounded-2xl overflow-hidden animate-slide-up border-white/5">
+                    <div class="px-8 py-5 border-b border-white/5 bg-white/[0.02] flex items-center justify-between backdrop-blur-md">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-amber-500/20 to-amber-600/10 border border-amber-500/20 flex items-center justify-center">
+                                <i data-lucide="scale" class="w-5 h-5 text-amber-400"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-base font-serif font-medium text-white tracking-wide">Constitutional Counsel</h2>
+                                <p class="text-[10px] text-slate-400 uppercase tracking-widest">Connected to Indian Penal Code DB</p>
+                            </div>
+                        </div>
+                        <button class="p-2 hover:bg-white/5 rounded-lg transition-colors text-slate-500 hover:text-white">
+                            <i data-lucide="more-horizontal" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                    
+                    <div id="chat-history" class="flex-1 overflow-y-auto p-8 space-y-10 custom-scrollbar relative">
+                        <div id="chat-empty" class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none opacity-40">
+                             <div class="w-32 h-32 rounded-full border border-white/5 bg-white/[0.01] flex items-center justify-center mb-6">
+                               <i data-lucide="book" class="w-12 h-12 text-slate-500"></i>
+                             </div>
+                            <h3 class="text-xl font-serif text-slate-300 mb-2">How may I assist you today?</h3>
+                            <p class="text-sm text-slate-600">Ask about Sections, Acts, or Case Law.</p>
+                        </div>
+                    </div>
+
+                    <div class="p-6 bg-[#08080a] border-t border-white/5">
+                        <form id="advisor-form" class="relative max-w-5xl mx-auto">
+                            <div class="relative group">
+                                <input type="text" id="advisor-input" placeholder="Query the legal database (e.g. 'Bail conditions under Section 437')" 
+                                    class="w-full bg-[#121215] border border-white/10 text-white pl-6 pr-16 py-5 rounded-2xl focus:outline-none focus:border-amber-500/30 focus:ring-1 focus:ring-amber-500/30 shadow-[inset_0_2px_4px_rgba(0,0,0,0.5)] transition-all placeholder-slate-600 font-light">
+                                <button type="submit" class="absolute right-3 top-3 bottom-3 aspect-square bg-white/5 hover:bg-amber-600 text-slate-400 hover:text-white rounded-xl transition-all flex items-center justify-center border border-white/5 hover:border-amber-500">
+                                    <i data-lucide="arrow-up" class="w-5 h-5"></i>
+                                </button>
+                            </div>
+                            <p class="text-[10px] text-center text-slate-600 mt-3">AI responses are for reference only and do not constitute formal legal advice.</p>
+                        </form>
+                    </div>
+                </div>
+
+                <div id="tab-fee_finder" class="tab-content hidden grid grid-cols-1 lg:grid-cols-12 gap-8 h-full animate-slide-up">
+                    <div class="lg:col-span-5 flex flex-col h-full">
+                        <div class="glass-panel p-1 rounded-2xl flex-1 flex flex-col">
+                            <div class="p-8 flex-1 flex flex-col">
+                                <div class="flex items-center space-x-4 mb-8">
+                                    <div class="p-3 bg-blue-500/10 border border-blue-500/20 rounded-xl">
+                                        <i data-lucide="calculator" class="w-6 h-6 text-blue-400"></i>
+                                    </div>
+                                    <div>
+                                        <h2 class="text-xl font-serif text-white">Cost Estimation</h2>
+                                        <p class="text-slate-400 text-xs mt-1">Configure case parameters</p>
+                                    </div>
+                                </div>
+                                <form id="fee-form" class="flex-1 flex flex-col">
+                                    <label class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3 pl-1">Case Details</label>
+                                    <div class="relative flex-1 mb-6">
+                                        <textarea id="fee-input" placeholder="Describe the legal matter in detail, including jurisdiction, complexity, and opposing counsel if known..." 
+                                        class="w-full h-full bg-[#0a0a0c] border border-white/10 rounded-xl p-6 text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-blue-500/30 focus:ring-1 focus:ring-blue-500/30 resize-none transition-all leading-relaxed shadow-inner font-light"></textarea>
+                                    </div>
+                                    <button type="submit" id="fee-submit" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-medium py-4 rounded-xl transition-all shadow-[0_0_20px_rgba(37,99,235,0.2)] hover:shadow-[0_0_30px_rgba(37,99,235,0.4)] flex items-center justify-center space-x-2 group border border-blue-500/50">
+                                        <span>Generate Estimate</span>
+                                        <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-7 glass-panel rounded-2xl overflow-hidden flex flex-col min-h-[500px] border-white/5">
+                        <div class="bg-white/[0.02] px-8 py-5 border-b border-white/5 flex justify-between items-center backdrop-blur-sm">
+                            <h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest flex items-center">
+                                <i data-lucide="pie-chart" class="w-4 h-4 mr-2"></i> Breakdown
+                            </h3>
+                            <div id="fee-result-badge" class="hidden text-[10px] px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center font-bold uppercase tracking-wider">
+                                <i data-lucide="sparkles" class="w-3 h-3 mr-1.5"></i> AI Generated
+                            </div>
+                        </div>
+                        <div id="fee-output" class="p-10 overflow-y-auto flex-1 custom-scrollbar text-slate-300 leading-relaxed">
+                            <div id="fee-placeholder" class="flex flex-col items-center justify-center h-full text-slate-600">
+                                <div class="w-20 h-20 rounded-full border border-dashed border-slate-700 flex items-center justify-center mb-4">
+                                    <i data-lucide="bar-chart-2" class="w-8 h-8 opacity-40"></i>
+                                </div>
+                                <p class="text-sm font-medium text-slate-500">Awaiting input parameters...</p>
+                            </div>
+                            <div id="fee-loading" class="hidden flex flex-col items-center justify-center h-full space-y-8">
+                                <div class="relative">
+                                    <div class="absolute inset-0 bg-blue-500 blur-2xl opacity-20 animate-pulse"></div>
+                                    <div class="w-12 h-12 border-2 border-blue-500/30 border-t-blue-500 rounded-full animate-spin relative z-10"></div>
+                                </div>
+                                <p class="text-slate-500 text-xs uppercase tracking-widest animate-pulse">Calculating Market Rates...</p>
+                            </div>
+                            <div id="fee-content" class="hidden prose prose-invert prose-p:text-slate-300 prose-headings:font-serif prose-headings:text-white max-w-none"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab-case_predictor" class="tab-content hidden grid grid-cols-1 lg:grid-cols-12 gap-8 h-full animate-slide-up">
+                    <div class="lg:col-span-5 flex flex-col gap-6">
+                        <div class="glass-panel p-1 rounded-2xl flex-1">
+                            <div class="p-8 h-full flex flex-col">
+                                <div class="flex items-center space-x-4 mb-8">
+                                    <div class="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-xl">
+                                        <i data-lucide="activity" class="w-6 h-6 text-emerald-400"></i>
+                                    </div>
+                                    <div>
+                                        <h2 class="text-xl font-serif text-white">Litigation Predictor</h2>
+                                        <p class="text-slate-400 text-xs mt-1">Win probability simulation</p>
+                                    </div>
+                                </div>
+                                <form id="predictor-form" class="space-y-6 flex-1 flex flex-col">
+                                    <div class="flex-1 space-y-6">
+                                        <div>
+                                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-3 pl-1">Core Arguments</label>
+                                            <textarea id="predictor-desc" class="w-full h-40 bg-[#0a0a0c] border border-white/10 rounded-xl p-5 text-sm text-white focus:border-emerald-500/30 focus:ring-1 focus:ring-emerald-500/30 outline-none transition-all resize-none shadow-inner" placeholder="Outline the key facts and legal grounds..."></textarea>
+                                        </div>
+                                        
+                                        <div>
+                                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-3 pl-1">Supporting Evidence</label>
+                                            <div class="relative border border-dashed border-slate-700 hover:border-emerald-500/50 hover:bg-emerald-900/5 rounded-xl p-8 transition-all group bg-[#0a0a0c]">
+                                                <input type="file" id="predictor-file" accept=".pdf,.txt" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
+                                                <div class="flex flex-col items-center justify-center text-center">
+                                                    <div class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                                                        <i data-lucide="upload-cloud" class="w-5 h-5 text-slate-400 group-hover:text-emerald-400 transition-colors"></i>
+                                                    </div>
+                                                    <p id="predictor-filename" class="text-xs text-slate-400 group-hover:text-slate-300 font-medium">Upload Brief (PDF)</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" id="predictor-btn" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-medium py-4 rounded-xl shadow-[0_0_20px_rgba(16,185,129,0.2)] transition-all border border-emerald-500/50 uppercase text-xs tracking-widest">
+                                        Run Simulation Model
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="lg:col-span-7 glass-panel rounded-2xl overflow-hidden flex flex-col min-h-[500px] border-white/5">
+                         <div class="bg-white/[0.02] px-8 py-5 border-b border-white/5 flex justify-between items-center backdrop-blur-sm">
+                            <h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest flex items-center">
+                                <i data-lucide="file-check" class="w-4 h-4 mr-2"></i> Assessment Report
+                            </h3>
+                        </div>
+                        <div id="predictor-output" class="p-10 overflow-y-auto flex-1 custom-scrollbar text-slate-300">
+                             <div id="predictor-placeholder" class="flex flex-col items-center justify-center h-full text-slate-600">
+                                <div class="w-20 h-20 rounded-full bg-white/5 flex items-center justify-center mb-4 border border-white/5">
+                                   <i data-lucide="binary" class="w-8 h-8 opacity-40"></i>
+                                </div>
+                               <p class="text-sm font-medium text-slate-500">Initialize simulation to view results.</p>
+                             </div>
+                             <div id="predictor-content" class="hidden prose prose-invert prose-emerald max-w-none whitespace-pre-wrap"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab-pdf_summarizer" class="tab-content hidden h-full flex flex-col lg:flex-row gap-8 animate-slide-up">
+                    <div class="lg:w-1/3 flex flex-col gap-6">
+                        <div class="glass-panel p-1 rounded-2xl flex flex-col flex-1">
+                            <div class="p-10 flex flex-col items-center text-center h-full justify-center">
+                                <div class="w-20 h-20 bg-indigo-500/10 border border-indigo-500/20 rounded-full flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(99,102,241,0.1)]">
+                                    <i data-lucide="file-search" class="w-8 h-8 text-indigo-400"></i>
+                                </div>
+                                <h2 class="text-2xl font-serif text-white mb-3">Document Intelligence</h2>
+                                <p class="text-slate-400 text-sm mb-10 leading-relaxed px-4">Upload contracts, court orders, or briefs for automated clause extraction and summarization.</p>
+                                
+                                <input type="file" id="pdf-upload-input" accept=".pdf" class="hidden">
+                                <label for="pdf-upload-input" id="pdf-upload-label" class="w-full border border-dashed border-slate-700 hover:border-indigo-400 hover:bg-indigo-900/10 rounded-xl p-10 cursor-pointer transition-all flex flex-col items-center justify-center mb-6 group">
+                                    <i data-lucide="folder-open" class="w-8 h-8 text-slate-500 group-hover:text-indigo-400 transition-colors mb-3"></i>
+                                    <span id="pdf-filename" class="text-xs font-bold uppercase tracking-widest text-slate-400 group-hover:text-indigo-300">Select Document</span>
+                                </label>
+
+                                <button id="pdf-analyze-btn" disabled class="w-full bg-indigo-600 hover:bg-indigo-500 disabled:bg-slate-800 disabled:text-slate-600 text-white font-medium py-4 rounded-xl shadow-lg transition-all border border-indigo-500/50 flex justify-center items-center">
+                                    <span>Analyze Content</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-2/3 glass-panel rounded-2xl overflow-hidden relative min-h-[500px] flex flex-col border-white/5">
+                         <div class="bg-white/[0.02] px-8 py-5 border-b border-white/5 flex justify-between items-center">
+                            <h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest flex items-center">
+                              <i data-lucide="align-left" class="w-4 h-4 mr-2"></i> Executive Summary
+                            </h3>
+                         </div>
+                         <div id="pdf-output" class="p-10 flex-1 overflow-y-auto custom-scrollbar relative text-slate-300">
+                             <div class="h-full flex flex-col items-center justify-center text-slate-600 opacity-50">
+                                <i data-lucide="file-text" class="w-16 h-16 opacity-30 mb-4"></i>
+                                <p class="text-sm font-medium">Waiting for document...</p>
+                             </div>
+                         </div>
+                    </div>
+                </div>
+
+                <div id="tab-document_locker" class="tab-content hidden grid grid-cols-1 lg:grid-cols-3 gap-8 h-full animate-slide-up">
+                    <div class="lg:col-span-1 flex flex-col gap-6">
+                        <div class="glass-panel p-1 rounded-2xl flex-1 flex flex-col">
+                            <div class="p-8 flex flex-col h-full relative overflow-hidden">
+                                <div class="absolute top-0 right-0 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl -mr-10 -mt-10 pointer-events-none"></div>
+                                <div class="flex items-center space-x-4 mb-10">
+                                    <div class="p-3 bg-purple-500/10 border border-purple-500/20 rounded-xl shadow-[0_0_15px_rgba(168,85,247,0.2)]">
+                                        <i data-lucide="lock" class="w-6 h-6 text-purple-400"></i>
+                                    </div>
+                                    <div>
+                                        <h2 class="text-lg font-bold text-white font-serif">Secure Vault</h2>
+                                        <p class="text-slate-400 text-xs mt-1">AES-256 Encryption</p>
+                                    </div>
+                                </div>
+                                <input type="file" id="locker-input" accept=".pdf" class="hidden">
+                                <label for="locker-input" class="border-2 border-dashed border-slate-700 hover:border-purple-400 hover:bg-purple-900/5 rounded-xl p-10 transition-all duration-300 flex flex-col items-center justify-center text-center gap-4 cursor-pointer group">
+                                     <div class="w-12 h-12 bg-slate-800 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                                         <i data-lucide="arrow-up" class="text-slate-400 w-5 h-5"></i>
+                                     </div>
+                                     <div>
+                                        <p id="locker-filename" class="text-white font-medium text-sm">Drop highly sensitive files</p>
+                                        <p class="text-[10px] text-slate-500 mt-1">Only accessible by Partner Key</p>
+                                     </div>
+                                </label>
+                                <button id="locker-btn" disabled class="mt-8 w-full py-4 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 text-white rounded-xl font-medium shadow-lg transition-all flex items-center justify-center space-x-2">
+                                     <i data-lucide="shield" class="w-4 h-4"></i>
+                                     <span>Encrypt & Vault</span>
+                                </button>
+                                <div id="locker-msg" class="hidden mt-4 text-center text-xs font-medium tracking-wide"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-2 glass-panel rounded-2xl overflow-hidden flex flex-col border-white/5">
+                        <div class="px-8 py-5 border-b border-white/5 bg-white/[0.02] flex justify-between items-center">
+                            <div class="flex items-center space-x-2">
+                                <i data-lucide="server" class="w-4 h-4 text-purple-400"></i>
+                                <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Cloud Ledger</span>
+                            </div>
+                            <button onclick="fetchDocuments()" class="p-2 hover:bg-white/5 rounded-lg text-slate-400 transition-colors">
+                                <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                        <div id="locker-list" class="flex-1 overflow-y-auto custom-scrollbar p-6 space-y-2"></div>
+                    </div>
+                </div>
+
+                <div id="tab-case_reminder" class="tab-content hidden grid grid-cols-1 lg:grid-cols-12 gap-8 h-full animate-slide-up">
+                    <div class="lg:col-span-8 glass-panel rounded-2xl overflow-hidden flex flex-col border-white/5">
+                        <div class="px-8 py-5 border-b border-white/5 bg-white/[0.02] flex justify-between items-center">
+                            <div>
+                                <h2 class="text-xs font-bold text-slate-500 uppercase tracking-widest flex items-center gap-2">
+                                    <i data-lucide="calendar" class="w-4 h-4 text-blue-400"></i> Docket Timeline
+                                </h2>
+                            </div>
+                        </div>
+                        <div id="reminder-list" class="flex-1 overflow-y-auto p-8 custom-scrollbar space-y-4">
+                            <div class="h-full flex flex-col items-center justify-center text-slate-600 opacity-60">
+                                <i data-lucide="bell-off" class="w-10 h-10 mb-4 stroke-1"></i>
+                                <p class="text-sm">No scheduled proceedings.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="lg:col-span-4 flex flex-col h-full">
+                        <div class="glass-panel p-1 rounded-2xl flex-1 flex flex-col">
+                            <div class="p-8 flex flex-col h-full overflow-y-auto custom-scrollbar">
+                                <div class="flex items-center space-x-4 mb-6">
+                                    <div class="p-3 bg-blue-500/10 border border-blue-500/20 rounded-xl">
+                                        <i data-lucide="plus" class="w-5 h-5 text-blue-400"></i>
+                                    </div>
+                                    <h2 class="text-lg font-serif text-white">New Docket Entry</h2>
+                                </div>
+                                
+                                <form id="reminder-form" class="flex-1 flex flex-col gap-5">
+                                    <div class="space-y-1.5">
+                                        <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest pl-1">Case Title</label>
+                                        <input type="text" id="rem-title" placeholder="e.g. Smith v. Jones" class="w-full bg-[#0a0a0c] border border-white/10 rounded-xl p-3 text-sm text-white focus:border-blue-500/50 outline-none">
+                                    </div>
+                                    <div class="space-y-1.5">
+                                        <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest pl-1">Due Date</label>
+                                        <input type="date" id="rem-date" class="w-full bg-[#0a0a0c] border border-white/10 rounded-xl p-3 text-sm text-white outline-none">
+                                    </div>
+
+                                    <div class="space-y-1.5">
+                                        <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest pl-1">Client Email</label>
+                                        <input type="email" id="rem-recipient" placeholder="client@domain.com" class="w-full bg-[#0a0a0c] border border-white/10 rounded-xl p-3 text-sm text-white outline-none">
+                                    </div>
+
+                                    <div class="p-4 bg-white/5 rounded-xl border border-white/5 space-y-3">
+                                        <p class="text-[10px] text-blue-400 font-bold uppercase tracking-widest mb-1 flex items-center">
+                                            <i data-lucide="mail" class="w-3 h-3 mr-1"></i> SMTP Configuration
+                                        </p>
+                                        <input type="email" id="rem-sender" placeholder="Sender Email" class="w-full bg-[#0a0a0c] border border-white/10 rounded-lg p-2 text-xs text-white outline-none">
+                                        <input type="password" id="rem-pass" placeholder="App Password" class="w-full bg-[#0a0a0c] border border-white/10 rounded-lg p-2 text-xs text-white outline-none">
+                                    </div>
+
+                                    <div class="space-y-1.5 flex-1">
+                                        <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest pl-1">Notes</label>
+                                        <textarea id="rem-notes" class="w-full h-20 bg-[#0a0a0c] border border-white/10 rounded-xl p-3 text-sm text-white outline-none resize-none"></textarea>
+                                    </div>
+
+                                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-medium py-3.5 rounded-xl shadow-lg transition-all flex items-center justify-center space-x-2">
+                                        <i data-lucide="send" class="w-4 h-4"></i> <span>Dispatch Reminder</span>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <div id="feedback-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-md transition-opacity" onclick="closeFeedback()"></div>
+        <div class="relative w-full max-w-lg glass-panel rounded-2xl border border-white/10 shadow-2xl animate-slide-up overflow-hidden">
+             <div class="px-6 py-4 border-b border-white/5 bg-white/[0.02] flex justify-between items-center">
+                <h2 class="text-white font-serif font-medium">Feedback Channel</h2>
+                <button onclick="closeFeedback()" class="text-slate-500 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
+             </div>
+             <div class="p-6">
+                 <form id="feedback-form" class="space-y-4">
+                     <textarea id="feedback-desc" class="w-full h-32 bg-[#0a0a0c] border border-white/10 rounded-xl p-4 text-sm text-white outline-none resize-none" placeholder="Describe your technical issue..."></textarea>
+                     <button type="submit" class="w-full bg-white text-black font-bold py-3 rounded-xl hover:bg-slate-200 transition-all">Submit Report</button>
+                 </form>
+             </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
